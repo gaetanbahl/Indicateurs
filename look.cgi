@@ -47,12 +47,7 @@ Content-Type: text/html\n
 				   
 				   
 for row in rows:
-        print """<tr>
-					   <td>{0}</td>
-					   <td>{1}</td>
-					   <td>{2}</td>
-					   <td>{3}</td>
-			</tr>""".format(row["indic"].encode('utf-8'), row["pole"], row["date"], "<a href='"+row["file"]+"'>JPG</a>")				   
+        print u'<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(row["indic"], unicode(short_to_pole(row["pole"]),'utf-8'), row["date"], "<a href=\""+row["file"]+'.png">PNG</a>').encode('utf-8')
 				   
 				   
 				   

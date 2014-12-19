@@ -2,6 +2,7 @@
 # -*- coding:utf8 -*-
 								
 import sqlite3
+from datetime import date
 from indicateurs import *
 con = sqlite3.connect("bdd.db")
 con.row_factory = sqlite3.Row
@@ -11,10 +12,12 @@ cur.execute("SELECT * FROM INDICS;")
 
 rows = cur.fetchall()
 
+d = date.today()
+
 liste_indics=""
 
 for row in rows:
-	liste_indics += u'<option value="{0}">{0}</option> \n'.format(row["indic"])
+	liste_indics += u'<option value="{0}">{0}</option> \n'.format(row["indic"]).encode('utf-8')
 
 print """\
 Content-Type: text/html\n
@@ -50,7 +53,10 @@ Content-Type: text/html\n
 						<option value="treso">Trésorerie</option>
 						<option value="com">Communication</option>
 						<option value="prosp">Prospection</option>
+						<option value="dsi">DSI</option>
+						<option value="rh">Ressources Humaines</option>
 				</select>
+				<p>Date (jour, mois, année): <input name="jour" size="2" value="{1}"/><input name="mois" size="2" value="{2}"/><input name="annee" size="4" value="{3}"/>
 
 
 </p 
@@ -74,4 +80,4 @@ Par Gaétan, directeur du Pôle Qualité.
 
 </html>
 
-""".format(liste_indics) 
+""".format(liste_indics,d.day,d.month,d.year ) 

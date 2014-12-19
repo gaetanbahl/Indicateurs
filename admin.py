@@ -14,7 +14,7 @@ rows = cur.fetchall()
 liste_indics=""
 
 for row in rows:
-	liste_indics += u'<option value="{0}">{0}</option> \n'.format(row["indic"])
+	liste_indics += u'<option value="{0}">{0}</option> \n'.format(row["indic"]).encode('utf-8')
 
 								
 print """\
@@ -51,6 +51,8 @@ Content-Type: text/html\n
 						<option value="treso">Trésorerie</option>
 						<option value="com">Communication</option>
 						<option value="prosp">Prospection</option>
+						<option value="dsi">DSI</option>
+						<option value="rh">Ressources Humaines</option>
 				</select>
 </p 
 				<p>Nom de l'indicateur : <input type="text" name="nomindic" id="nomindic"/></p>
